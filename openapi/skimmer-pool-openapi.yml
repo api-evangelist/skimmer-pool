@@ -1,0 +1,539 @@
+openapi: 3.0.3
+info:
+  title: Skimmer Public API
+  description: >-
+    The Skimmer Public API is the enterprise integration surface for Skimmer,
+    pool-service business management software. It exposes the pool-service
+    company's operational data - customers, bodies of water, service locations,
+    work orders and work order types, technician routes, quotes, invoices,
+    billing, products and product categories, and users - over REST at
+    https://publicapi.getskimmer.com.
+
+
+    Access is sales-led: the API is available only on Skimmer's top
+    ("Owning the Market" / Enterprise) tier and is provisioned by Skimmer's
+    team, not through self-service signup. Every request is authenticated with a
+    per-account API key sent in the `skimmer-api-key` header. The API is rate
+    limited to 500 requests per minute per key; exceeding it returns 429 with a
+    Retry-After header.
+
+
+    NOTE: Path names, HTTP methods, the base URL, the auth header, and the
+    Sieve-style search parameters below are taken from Skimmer's public
+    developer portal (devportal.getskimmer.com). Request and response BODY
+    schemas are MODELED by API Evangelist from resource descriptions - Skimmer
+    does not publish a machine-readable OpenAPI document publicly, and full
+    field-level schemas are behind the sales-led onboarding. Treat property
+    lists as representative, not authoritative.
+  version: '1.0'
+  contact:
+    name: Skimmer
+    url: https://www.getskimmer.com
+servers:
+  - url: https://publicapi.getskimmer.com
+    description: Skimmer Public API (production)
+security:
+  - skimmerApiKey: []
+tags:
+  - name: Customers
+    description: Pool-service customers and their activity logs.
+  - name: Bodies of Water
+    description: Pools and other bodies of water Skimmer services.
+  - name: Service Locations
+    description: Physical service sites; the unit Skimmer bills on.
+  - name: Work Orders
+    description: Repair and service jobs, and work order types.
+  - name: Routes
+    description: Technician routes of service stops by date.
+  - name: Invoices
+    description: Invoices and billable service activity.
+  - name: Quotes
+    description: Sales quotes / estimates.
+  - name: Products
+    description: Product catalog, categories, and prices.
+  - name: Users
+    description: Account users - owners, admins, and technicians.
+paths:
+  /Customers:
+    get:
+      tags: [Customers]
+      summary: List customers
+      responses:
+        '200':
+          description: An array of customers.
+    put:
+      tags: [Customers]
+      summary: Update an existing customer
+      responses:
+        '200':
+          description: The updated customer.
+    post:
+      tags: [Customers]
+      summary: Create a new customer
+      responses:
+        '201':
+          description: The created customer.
+  /Customers/search:
+    get:
+      tags: [Customers]
+      summary: Search customers
+      parameters:
+        - $ref: '#/components/parameters/Sorts'
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A filtered, sorted, paginated page of customers.
+  /Customers/{id}:
+    get:
+      tags: [Customers]
+      summary: Get one customer by ID
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: A single customer.
+    delete:
+      tags: [Customers]
+      summary: Delete a customer
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '204':
+          description: Deleted.
+  /Customers/Activate:
+    post:
+      tags: [Customers]
+      summary: Activate a customer
+      responses:
+        '200':
+          description: The customer was activated.
+  /Customers/Deactivate:
+    post:
+      tags: [Customers]
+      summary: Deactivate a customer
+      responses:
+        '200':
+          description: The customer was deactivated.
+  /CustomerActivityLogs:
+    get:
+      tags: [Customers]
+      summary: List customer activity logs
+      responses:
+        '200':
+          description: An array of customer activity logs.
+    put:
+      tags: [Customers]
+      summary: Update a customer activity log
+      responses:
+        '200':
+          description: The updated activity log.
+    post:
+      tags: [Customers]
+      summary: Create a customer activity log
+      responses:
+        '201':
+          description: The created activity log.
+  /BodiesOfWater:
+    get:
+      tags: [Bodies of Water]
+      summary: List bodies of water
+      responses:
+        '200':
+          description: An array of bodies of water.
+    put:
+      tags: [Bodies of Water]
+      summary: Update a body of water
+      responses:
+        '200':
+          description: The updated body of water.
+    post:
+      tags: [Bodies of Water]
+      summary: Create a body of water
+      responses:
+        '201':
+          description: The created body of water.
+  /BodiesOfWater/search:
+    get:
+      tags: [Bodies of Water]
+      summary: Search bodies of water
+      parameters:
+        - $ref: '#/components/parameters/Sorts'
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A filtered, sorted, paginated page of bodies of water.
+  /BodiesOfWater/{id}:
+    get:
+      tags: [Bodies of Water]
+      summary: Get one body of water by ID
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: A single body of water.
+    delete:
+      tags: [Bodies of Water]
+      summary: Delete a body of water
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '204':
+          description: Deleted.
+  /ServiceLocations:
+    get:
+      tags: [Service Locations]
+      summary: List service locations
+      responses:
+        '200':
+          description: An array of service locations.
+    put:
+      tags: [Service Locations]
+      summary: Update a service location
+      responses:
+        '200':
+          description: The updated service location.
+    post:
+      tags: [Service Locations]
+      summary: Create a service location
+      responses:
+        '201':
+          description: The created service location.
+  /ServiceLocations/search:
+    get:
+      tags: [Service Locations]
+      summary: Search service locations
+      parameters:
+        - $ref: '#/components/parameters/Sorts'
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A filtered, sorted, paginated page of service locations.
+  /ServiceLocations/{id}:
+    get:
+      tags: [Service Locations]
+      summary: Get one service location by ID
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: A single service location.
+    delete:
+      tags: [Service Locations]
+      summary: Delete a service location
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '204':
+          description: Deleted.
+  /WorkOrders:
+    put:
+      tags: [Work Orders]
+      summary: Update a work order
+      responses:
+        '200':
+          description: The updated work order.
+    post:
+      tags: [Work Orders]
+      summary: Create a work order
+      responses:
+        '201':
+          description: The created work order.
+  /WorkOrders/search:
+    get:
+      tags: [Work Orders]
+      summary: Search work orders
+      parameters:
+        - $ref: '#/components/parameters/Sorts'
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A filtered, sorted, paginated page of work orders.
+  /WorkOrders/{id}:
+    get:
+      tags: [Work Orders]
+      summary: Get one work order by ID
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: A single work order.
+  /WorkOrderTypes:
+    get:
+      tags: [Work Orders]
+      summary: List work order types
+      responses:
+        '200':
+          description: An array of work order types.
+  /Routes/GetTechRoute:
+    get:
+      tags: [Routes]
+      summary: Get a technician's route for a date
+      parameters:
+        - name: TechId
+          in: query
+          required: true
+          description: Identifier of the technician (user).
+          schema:
+            type: string
+        - name: ServiceDate
+          in: query
+          required: true
+          description: Service date (date).
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: The technician's ordered route of stops for the date.
+  /Routes/GetAllRoutesForDay:
+    get:
+      tags: [Routes]
+      summary: Get all technician routes for a date
+      parameters:
+        - name: ServiceDate
+          in: query
+          required: true
+          description: Service date (date).
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: All technicians' routes for the given date.
+  /Invoices:
+    get:
+      tags: [Invoices]
+      summary: List invoices by date
+      responses:
+        '200':
+          description: An array of invoices.
+  /Invoices/search:
+    get:
+      tags: [Invoices]
+      summary: Search invoices
+      parameters:
+        - $ref: '#/components/parameters/Sorts'
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A filtered, sorted, paginated page of invoices.
+  /Invoices/{id}:
+    get:
+      tags: [Invoices]
+      summary: Get one invoice by ID
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: A single invoice.
+  /Billing:
+    get:
+      tags: [Invoices]
+      summary: Get billable service activity
+      description: Retrieves billable service activity meeting the filter criteria.
+      parameters:
+        - $ref: '#/components/parameters/Filters'
+      responses:
+        '200':
+          description: Billable service activity.
+  /Quotes:
+    get:
+      tags: [Quotes]
+      summary: List quotes
+      parameters:
+        - name: customerId
+          in: query
+          required: false
+          description: Filter quotes by customer.
+          schema:
+            type: string
+        - name: includeDeleted
+          in: query
+          required: false
+          description: Include deleted quotes.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: An array of quotes.
+  /Quotes/{id}:
+    get:
+      tags: [Quotes]
+      summary: Get one quote by ID
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: A single quote with totals, customer, and locations.
+  /Products:
+    get:
+      tags: [Products]
+      summary: List products
+      responses:
+        '200':
+          description: An array of products.
+    put:
+      tags: [Products]
+      summary: Update a product
+      responses:
+        '200':
+          description: The updated product.
+    post:
+      tags: [Products]
+      summary: Create a product
+      responses:
+        '201':
+          description: The created product.
+  /Products/search:
+    get:
+      tags: [Products]
+      summary: Search products
+      parameters:
+        - $ref: '#/components/parameters/Sorts'
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A filtered, sorted, paginated page of products.
+  /Products/prices:
+    put:
+      tags: [Products]
+      summary: Bulk update product prices
+      responses:
+        '200':
+          description: Prices updated.
+  /Products/{id}:
+    get:
+      tags: [Products]
+      summary: Get one product by ID
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: A single product.
+    delete:
+      tags: [Products]
+      summary: Delete a product
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '204':
+          description: Deleted.
+  /ProductCategories:
+    get:
+      tags: [Products]
+      summary: List product categories
+      responses:
+        '200':
+          description: An array of product categories.
+    put:
+      tags: [Products]
+      summary: Update a product category
+      responses:
+        '200':
+          description: The updated product category.
+    post:
+      tags: [Products]
+      summary: Create a product category
+      responses:
+        '201':
+          description: The created product category.
+  /ProductCategories/search:
+    get:
+      tags: [Products]
+      summary: Search product categories
+      parameters:
+        - $ref: '#/components/parameters/Sorts'
+        - $ref: '#/components/parameters/Filters'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A filtered, sorted, paginated page of product categories.
+  /ProductCategories/{id}:
+    get:
+      tags: [Products]
+      summary: Get one product category by ID
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: A single product category.
+    delete:
+      tags: [Products]
+      summary: Delete a product category
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '204':
+          description: Deleted.
+  /Users:
+    get:
+      tags: [Users]
+      summary: List users
+      description: Retrieves all users - owners, admins, and technicians.
+      responses:
+        '200':
+          description: An array of users.
+components:
+  securitySchemes:
+    skimmerApiKey:
+      type: apiKey
+      in: header
+      name: skimmer-api-key
+      description: Per-account Skimmer Public API key, issued via sales-led onboarding.
+  parameters:
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: Resource identifier.
+      schema:
+        type: string
+    Sorts:
+      name: sorts
+      in: query
+      required: false
+      description: >-
+        Comma-delimited sort fields; prefix a field with '-' for descending
+        (e.g. -CreatedAt). Sieve-style.
+      schema:
+        type: string
+    Filters:
+      name: filters
+      in: query
+      required: false
+      description: >-
+        Sieve-style filter expression using operators such as ==, !=, >, <, >=,
+        <=, @= (contains), _= (starts with), _-= (ends with), and their
+        case-insensitive (*) and negated (!) variants. Combine with commas
+        (e.g. BillingState==TX,BillingCity==Houston).
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: 1-based page number.
+      schema:
+        type: integer
+        minimum: 1
+    PageSize:
+      name: pageSize
+      in: query
+      required: false
+      description: Number of results per page.
+      schema:
+        type: integer
+        minimum: 1

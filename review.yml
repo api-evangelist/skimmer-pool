@@ -1,0 +1,141 @@
+aid: skimmer-pool
+name: Skimmer
+review:
+  question: Does Skimmer expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-04'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Skimmer's public API is a request/response
+    REST API over HTTPS at https://publicapi.getskimmer.com. There is no
+    server-push transport (WebSocket or SSE) documented on Skimmer's developer
+    portal to model. Reads are done by polling the REST resource and search
+    endpoints; there is no realtime or bidirectional channel published.
+findings:
+  summary: |
+    Skimmer DOES expose a real, documented public API - but it is REST, not
+    WebSocket. Skimmer is pool-service business management software. Its Public
+    API is served from https://publicapi.getskimmer.com and documented on a
+    Zudoku-based developer portal at https://devportal.getskimmer.com. Every
+    request is authenticated with a per-account key sent in the `skimmer-api-key`
+    header. The API is rate limited to 500 requests per minute per key (429 +
+    Retry-After on overage). Access is sales-led and Enterprise-only: the API is
+    included solely on Skimmer's top "Owning the Market" / "Skimmer for
+    Enterprise" tier and is provisioned by Skimmer's sales team, not through
+    self-service signup. No WebSocket (ws:// or wss://) endpoint is documented
+    anywhere on Skimmer's portal as of the review date.
+  publicApi: |
+    Yes - documented and public-facing (portal is open), though gated for use.
+    Resources observed on the developer portal: Customers (+ CustomerActivityLogs),
+    BodiesOfWater, ServiceLocations, WorkOrders (+ WorkOrderTypes), Routes,
+    Invoices, Billing, Quotes, Products (+ ProductCategories, prices), Users,
+    plus supporting types (LeadSources, DosageTypes, InstalledItems). Most
+    resources offer full CRUD; several offer a Sieve-style /search route with
+    sorts, filters, page, and pageSize parameters.
+  accessModel: |
+    Sales-led / partner-style. Not plug-and-play, no app-store install, no
+    self-service key issuance. Available on the Enterprise tier only (custom
+    pricing, aimed at operations servicing 1,000+ pools/month). Prospects contact
+    sales@getskimmer.com or (855) 452-1737.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://publicapi.getskimmer.com
+      documented: true
+      note: Request/response REST. Auth via skimmer-api-key header. 500 req/min per key.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented on Skimmer's developer portal as of the review date.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No server-sent-events streaming surface is documented.
+  endpointsConfirmedRest:
+    - GET    https://publicapi.getskimmer.com/Customers
+    - PUT    https://publicapi.getskimmer.com/Customers
+    - POST   https://publicapi.getskimmer.com/Customers
+    - GET    https://publicapi.getskimmer.com/Customers/search
+    - GET    https://publicapi.getskimmer.com/Customers/{id}
+    - DELETE https://publicapi.getskimmer.com/Customers/{id}
+    - POST   https://publicapi.getskimmer.com/Customers/Activate
+    - POST   https://publicapi.getskimmer.com/Customers/Deactivate
+    - GET    https://publicapi.getskimmer.com/CustomerActivityLogs
+    - GET    https://publicapi.getskimmer.com/BodiesOfWater
+    - PUT    https://publicapi.getskimmer.com/BodiesOfWater
+    - POST   https://publicapi.getskimmer.com/BodiesOfWater
+    - GET    https://publicapi.getskimmer.com/BodiesOfWater/search
+    - GET    https://publicapi.getskimmer.com/BodiesOfWater/{id}
+    - DELETE https://publicapi.getskimmer.com/BodiesOfWater/{id}
+    - GET    https://publicapi.getskimmer.com/ServiceLocations
+    - PUT    https://publicapi.getskimmer.com/ServiceLocations
+    - POST   https://publicapi.getskimmer.com/ServiceLocations
+    - GET    https://publicapi.getskimmer.com/ServiceLocations/search
+    - GET    https://publicapi.getskimmer.com/ServiceLocations/{id}
+    - DELETE https://publicapi.getskimmer.com/ServiceLocations/{id}
+    - POST   https://publicapi.getskimmer.com/WorkOrders
+    - PUT    https://publicapi.getskimmer.com/WorkOrders
+    - GET    https://publicapi.getskimmer.com/WorkOrders/search
+    - GET    https://publicapi.getskimmer.com/WorkOrders/{id}
+    - GET    https://publicapi.getskimmer.com/WorkOrderTypes
+    - GET    https://publicapi.getskimmer.com/Routes/GetTechRoute
+    - GET    https://publicapi.getskimmer.com/Routes/GetAllRoutesForDay
+    - GET    https://publicapi.getskimmer.com/Invoices
+    - GET    https://publicapi.getskimmer.com/Invoices/search
+    - GET    https://publicapi.getskimmer.com/Invoices/{id}
+    - GET    https://publicapi.getskimmer.com/Billing
+    - GET    https://publicapi.getskimmer.com/Quotes
+    - GET    https://publicapi.getskimmer.com/Quotes/{id}
+    - GET    https://publicapi.getskimmer.com/Products
+    - PUT    https://publicapi.getskimmer.com/Products
+    - POST   https://publicapi.getskimmer.com/Products
+    - GET    https://publicapi.getskimmer.com/Products/search
+    - PUT    https://publicapi.getskimmer.com/Products/prices
+    - GET    https://publicapi.getskimmer.com/Products/{id}
+    - DELETE https://publicapi.getskimmer.com/Products/{id}
+    - GET    https://publicapi.getskimmer.com/ProductCategories
+    - PUT    https://publicapi.getskimmer.com/ProductCategories
+    - POST   https://publicapi.getskimmer.com/ProductCategories
+    - GET    https://publicapi.getskimmer.com/ProductCategories/search
+    - GET    https://publicapi.getskimmer.com/ProductCategories/{id}
+    - DELETE https://publicapi.getskimmer.com/ProductCategories/{id}
+    - GET    https://publicapi.getskimmer.com/Users
+  endpointsModeled: |
+    Path names, HTTP methods, the base URL, the skimmer-api-key auth header, and
+    the Sieve-style search parameters above are taken from Skimmer's public
+    developer portal. Request/response BODY schemas in openapi/ are MODELED by
+    API Evangelist - Skimmer does not publish a machine-readable OpenAPI
+    document publicly and full field-level schemas are behind sales-led
+    onboarding.
+sources:
+  - url: https://devportal.getskimmer.com/introduction
+    type: Documentation
+    note: Developer portal home; confirms Public API, docs sections, contact for issues.
+  - url: https://devportal.getskimmer.com/api
+    type: APIReference
+    note: API reference index listing Customers, BodiesOfWater, ServiceLocations, WorkOrders, Routes, Invoices, Billing, Quotes, Products, Users, and more.
+  - url: https://devportal.getskimmer.com/rate-limiting
+    type: Documentation
+    note: 500 requests/minute per API key; RateLimit-* headers; 429 + Retry-After.
+  - url: https://devportal.getskimmer.com/search
+    type: Documentation
+    note: Sieve-style search - sorts, filters (20+ operators), page, pageSize.
+  - url: https://www.getskimmer.com/blog/skimmer-announces-public-api-to-support-custom-enterprise-workflows
+    type: Announcement
+    note: Public API announcement; sales-led, Owning the Market / Enterprise tier only.
+  - url: https://www.getskimmer.com/pricing
+    type: Pricing
+    note: Per-serviced-location pricing; API access only on Enterprise tier.
+  - url: https://www.getskimmer.com/enterprise
+    type: Website
+    note: Skimmer for Enterprise; Public API and custom integrations.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    Skimmer's own public API is request/response REST (base
+    https://publicapi.getskimmer.com, skimmer-api-key header). No WebSocket or
+    other server-push transport is documented, so no AsyncAPI document was
+    created. A modeled OpenAPI, plans, rate-limits, finops, and a Postman
+    collection were authored from the public developer portal instead.

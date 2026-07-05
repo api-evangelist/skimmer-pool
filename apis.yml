@@ -1,0 +1,205 @@
+aid: skimmer-pool
+url: https://raw.githubusercontent.com/api-evangelist/skimmer-pool/refs/heads/main/apis.yml
+name: Skimmer
+kind: company
+description: Skimmer is pool-service business management software (customers, bodies
+  of water, service stops and routes, work orders, quotes, invoices, and billing)
+  used by residential and commercial pool-service companies. Skimmer exposes a real,
+  documented public REST API at https://publicapi.getskimmer.com, with a Zudoku-based
+  developer portal at https://devportal.getskimmer.com. The API is enterprise-oriented
+  and access is sales-led - it is available only on Skimmer's top ("Owning the Market"
+  / Enterprise) tier and provisioned through Skimmer's sales team rather than
+  self-service signup. Authentication is via a per-account skimmer-api-key request
+  header, and the API is rate limited to 500 requests per minute per key.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Pool Service
+- Field Service Management
+- Pool Maintenance
+- Scheduling
+- Routes
+- Work Orders
+- Invoicing
+- Vertical SaaS
+created: '2026-07-04'
+modified: '2026-07-04'
+specificationVersion: '0.19'
+apis:
+- aid: skimmer-pool:skimmer-customers-api
+  name: Skimmer Customers API
+  tags:
+  - Customers
+  - CRM
+  - Activity Logs
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://devportal.getskimmer.com/api/customers
+  baseURL: https://publicapi.getskimmer.com
+  properties:
+  - url: https://devportal.getskimmer.com/introduction
+    type: Documentation
+  - url: https://devportal.getskimmer.com/api/customers
+    type: APIReference
+  - url: openapi/skimmer-pool-openapi.yml
+    type: OpenAPI
+  - url: collections/skimmer-pool.postman_collection.json
+    type: PostmanCollection
+  description: Create, retrieve, update, delete, search, activate, and deactivate the
+    pool-service company's customers, plus manage customer activity logs. Search
+    supports Sieve-style filters, sorts, and pagination (e.g. filters=BillingState==TX).
+- aid: skimmer-pool:skimmer-bodies-of-water-api
+  name: Skimmer Bodies of Water API
+  tags:
+  - Bodies of Water
+  - Pools
+  - Assets
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://devportal.getskimmer.com/api/bodiesofwater
+  baseURL: https://publicapi.getskimmer.com
+  properties:
+  - url: https://devportal.getskimmer.com/api/bodiesofwater
+    type: APIReference
+  - url: openapi/skimmer-pool-openapi.yml
+    type: OpenAPI
+  description: Manage the pools and other bodies of water Skimmer services - create,
+    list, get, update, delete, and search bodies of water and their attributes such
+    as name, gallons, filter type, and notes.
+- aid: skimmer-pool:skimmer-service-locations-api
+  name: Skimmer Service Locations API
+  tags:
+  - Service Locations
+  - Sites
+  - Addresses
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://devportal.getskimmer.com/api/servicelocations
+  baseURL: https://publicapi.getskimmer.com
+  properties:
+  - url: https://devportal.getskimmer.com/api/servicelocations
+    type: APIReference
+  - url: openapi/skimmer-pool-openapi.yml
+    type: OpenAPI
+  description: Full CRUD plus search over service locations - the physical sites (with
+    their bodies of water) that a customer has serviced. The unit Skimmer bills on is
+    the serviced location.
+- aid: skimmer-pool:skimmer-work-orders-api
+  name: Skimmer Work Orders API
+  tags:
+  - Work Orders
+  - Jobs
+  - Repairs
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://devportal.getskimmer.com/api/workorders
+  baseURL: https://publicapi.getskimmer.com
+  properties:
+  - url: https://devportal.getskimmer.com/api/workorders
+    type: APIReference
+  - url: openapi/skimmer-pool-openapi.yml
+    type: OpenAPI
+  description: Create, update, retrieve, and search work orders (repair and service
+    jobs), and list the account's work order types. Enterprise customers can update
+    work orders programmatically and pull all work order types via the API.
+- aid: skimmer-pool:skimmer-routes-api
+  name: Skimmer Routes API
+  tags:
+  - Routes
+  - Technicians
+  - Scheduling
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://devportal.getskimmer.com/api/routes
+  baseURL: https://publicapi.getskimmer.com
+  properties:
+  - url: https://devportal.getskimmer.com/api/routes
+    type: APIReference
+  - url: openapi/skimmer-pool-openapi.yml
+    type: OpenAPI
+  description: Retrieve technician routes by date - a single technician's route of
+    service stops (GetTechRoute) or all routes for all technicians on a given service
+    date (GetAllRoutesForDay), each returning ordered stops with customer and
+    location data.
+- aid: skimmer-pool:skimmer-invoices-billing-api
+  name: Skimmer Invoices and Billing API
+  tags:
+  - Invoices
+  - Billing
+  - Payments
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://devportal.getskimmer.com/api/invoices
+  baseURL: https://publicapi.getskimmer.com
+  properties:
+  - url: https://devportal.getskimmer.com/api/invoices
+    type: APIReference
+  - url: openapi/skimmer-pool-openapi.yml
+    type: OpenAPI
+  description: Read-oriented access to invoices and billing - get an invoice by ID,
+    list invoices by date, search invoices with filters and sorts, and pull billable
+    service activity matching filter criteria from the Billing endpoint.
+- aid: skimmer-pool:skimmer-quotes-api
+  name: Skimmer Quotes API
+  tags:
+  - Quotes
+  - Estimates
+  - Sales
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://devportal.getskimmer.com/api/quotes
+  baseURL: https://publicapi.getskimmer.com
+  properties:
+  - url: https://devportal.getskimmer.com/api/quotes
+    type: APIReference
+  - url: openapi/skimmer-pool-openapi.yml
+    type: OpenAPI
+  description: List quotes (optionally filtered by customer, optionally including
+    deleted) and retrieve full detail for a single quote, including status, financial
+    totals, customer info, and associated service locations.
+- aid: skimmer-pool:skimmer-products-api
+  name: Skimmer Products API
+  tags:
+  - Products
+  - Catalog
+  - Pricing
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://devportal.getskimmer.com/api/products
+  baseURL: https://publicapi.getskimmer.com
+  properties:
+  - url: https://devportal.getskimmer.com/api/products
+    type: APIReference
+  - url: openapi/skimmer-pool-openapi.yml
+    type: OpenAPI
+  description: Full CRUD and search over the product catalog and product categories,
+    plus a dedicated bulk price-update endpoint (Products/prices) for maintaining the
+    prices of chemicals, parts, and other line items.
+- aid: skimmer-pool:skimmer-users-api
+  name: Skimmer Users API
+  tags:
+  - Users
+  - Technicians
+  - Accounts
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://devportal.getskimmer.com/api/users
+  baseURL: https://publicapi.getskimmer.com
+  properties:
+  - url: https://devportal.getskimmer.com/api/users
+    type: APIReference
+  - url: openapi/skimmer-pool-openapi.yml
+    type: OpenAPI
+  description: Retrieve all users on the Skimmer account - owners, admins, and
+    technicians - with their identifiers, names, contact details, role, and active
+    status, so integrations can map technicians to routes and work orders.
+common:
+- type: Website
+  url: https://www.getskimmer.com
+- type: LinkedIn
+  url: https://www.linkedin.com/company/skimmer-pool-service-software
+- type: Documentation
+  url: https://devportal.getskimmer.com/introduction
+- type: APIReference
+  url: https://devportal.getskimmer.com/api
+- type: SignUp
+  url: https://www.getskimmer.com/enterprise
+- type: Plans
+  url: plans/skimmer-pool-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/skimmer-pool-rate-limits.yml
+- type: FinOps
+  url: finops/skimmer-pool-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

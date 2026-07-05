@@ -1,0 +1,95 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Skimmer
+providerId: skimmer-pool
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Pool Service
+- Field Service Management
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Skimmer spend. Skimmer is a subscription SaaS billed per
+  serviced location per month ($1/location on Getting Started with a $49 minimum;
+  $2/location on Scaling Up with a $98 minimum). The Public API is not metered as
+  its own line item and has no usage-based API fee; instead it is a capability
+  bundled into the custom-priced Enterprise ("Owning the Market") tier. So the
+  dominant cost driver is the count of active serviced locations, not API call
+  volume - the 500 req/min rate limit is an operational guardrail rather than a
+  billing meter.
+notes: >-
+  Enterprise/API pricing is negotiated with Skimmer sales and not published;
+  reconcile the actual contract value at onboarding. Per-location list prices are
+  from the public pricing page and may change.
+sources:
+- https://www.getskimmer.com/pricing
+- https://www.getskimmer.com/enterprise
+- https://devportal.getskimmer.com/rate-limiting
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Skimmer
+serviceCategory: Business Application Software
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Skimmer
+  ServiceCategory: Business Application Software
+  ProviderName: Skimmer
+  PublisherName: Skimmer
+  InvoiceIssuerName: Skimmer
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription-Based
+meters:
+- name: serviced_locations
+  description: Active serviced locations per month; the primary Skimmer billing unit.
+  unit: locations
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: api_requests
+  description: >-
+    Public API requests. Not a billing meter; capped at 500/min per key as an
+    operational guardrail on the Enterprise tier.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - api-key
+principles:
+- name: Visibility
+  description: >-
+    Track active serviced-location counts per account and plan, since that -
+    not API traffic - drives the monthly invoice.
+- name: Allocation
+  description: >-
+    Map serviced locations to internal branches/regions so subscription cost
+    attributes to the right cost centers.
+- name: Optimization
+  description: >-
+    Deactivate stale customers/locations promptly (the API's Activate /
+    Deactivate endpoints help) so you are not billed for locations no longer
+    serviced; confirm whether the Enterprise tier is justified by integration
+    value before upgrading for API access.
+- name: Accountability
+  description: >-
+    Assign an owner to the Skimmer subscription and review location counts and
+    Enterprise contract terms each billing cycle.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

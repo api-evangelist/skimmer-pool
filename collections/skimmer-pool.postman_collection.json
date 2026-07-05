@@ -1,0 +1,137 @@
+{
+  "info": {
+    "name": "Skimmer Public API",
+    "description": "Enterprise integration surface for Skimmer pool-service business management software. Base URL: https://publicapi.getskimmer.com. Every request is authenticated with a per-account key in the skimmer-api-key header. Access is sales-led and Enterprise-only; rate limit is 500 requests/minute per key. Path names and methods are from Skimmer's public developer portal (devportal.getskimmer.com); request bodies are modeled placeholders.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "skimmer-api-key", "type": "string" },
+      { "key": "value", "value": "{{skimmerApiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://publicapi.getskimmer.com", "type": "string" },
+    { "key": "skimmerApiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "List customers",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Customers", "host": ["{{baseUrl}}"], "path": ["Customers"] } }
+        },
+        {
+          "name": "Create a customer",
+          "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{baseUrl}}/Customers", "host": ["{{baseUrl}}"], "path": ["Customers"] } }
+        },
+        {
+          "name": "Update a customer",
+          "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{baseUrl}}/Customers", "host": ["{{baseUrl}}"], "path": ["Customers"] } }
+        },
+        {
+          "name": "Search customers",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Customers/search?filters=BillingState==TX&sorts=-CreatedAt&page=1&pageSize=50", "host": ["{{baseUrl}}"], "path": ["Customers", "search"], "query": [{ "key": "filters", "value": "BillingState==TX" }, { "key": "sorts", "value": "-CreatedAt" }, { "key": "page", "value": "1" }, { "key": "pageSize", "value": "50" }] } }
+        },
+        {
+          "name": "Get a customer by ID",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Customers/:id", "host": ["{{baseUrl}}"], "path": ["Customers", ":id"], "variable": [{ "key": "id", "value": "" }] } }
+        },
+        {
+          "name": "Delete a customer",
+          "request": { "method": "DELETE", "header": [], "url": { "raw": "{{baseUrl}}/Customers/:id", "host": ["{{baseUrl}}"], "path": ["Customers", ":id"], "variable": [{ "key": "id", "value": "" }] } }
+        },
+        {
+          "name": "Activate a customer",
+          "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{baseUrl}}/Customers/Activate", "host": ["{{baseUrl}}"], "path": ["Customers", "Activate"] } }
+        },
+        {
+          "name": "Deactivate a customer",
+          "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{baseUrl}}/Customers/Deactivate", "host": ["{{baseUrl}}"], "path": ["Customers", "Deactivate"] } }
+        },
+        {
+          "name": "List customer activity logs",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/CustomerActivityLogs", "host": ["{{baseUrl}}"], "path": ["CustomerActivityLogs"] } }
+        }
+      ]
+    },
+    {
+      "name": "Bodies of Water",
+      "item": [
+        { "name": "List bodies of water", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/BodiesOfWater", "host": ["{{baseUrl}}"], "path": ["BodiesOfWater"] } } },
+        { "name": "Create a body of water", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{baseUrl}}/BodiesOfWater", "host": ["{{baseUrl}}"], "path": ["BodiesOfWater"] } } },
+        { "name": "Update a body of water", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{baseUrl}}/BodiesOfWater", "host": ["{{baseUrl}}"], "path": ["BodiesOfWater"] } } },
+        { "name": "Search bodies of water", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/BodiesOfWater/search", "host": ["{{baseUrl}}"], "path": ["BodiesOfWater", "search"] } } },
+        { "name": "Get a body of water by ID", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/BodiesOfWater/:id", "host": ["{{baseUrl}}"], "path": ["BodiesOfWater", ":id"], "variable": [{ "key": "id", "value": "" }] } } },
+        { "name": "Delete a body of water", "request": { "method": "DELETE", "header": [], "url": { "raw": "{{baseUrl}}/BodiesOfWater/:id", "host": ["{{baseUrl}}"], "path": ["BodiesOfWater", ":id"], "variable": [{ "key": "id", "value": "" }] } } }
+      ]
+    },
+    {
+      "name": "Service Locations",
+      "item": [
+        { "name": "List service locations", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/ServiceLocations", "host": ["{{baseUrl}}"], "path": ["ServiceLocations"] } } },
+        { "name": "Create a service location", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{baseUrl}}/ServiceLocations", "host": ["{{baseUrl}}"], "path": ["ServiceLocations"] } } },
+        { "name": "Update a service location", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{baseUrl}}/ServiceLocations", "host": ["{{baseUrl}}"], "path": ["ServiceLocations"] } } },
+        { "name": "Search service locations", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/ServiceLocations/search", "host": ["{{baseUrl}}"], "path": ["ServiceLocations", "search"] } } },
+        { "name": "Get a service location by ID", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/ServiceLocations/:id", "host": ["{{baseUrl}}"], "path": ["ServiceLocations", ":id"], "variable": [{ "key": "id", "value": "" }] } } },
+        { "name": "Delete a service location", "request": { "method": "DELETE", "header": [], "url": { "raw": "{{baseUrl}}/ServiceLocations/:id", "host": ["{{baseUrl}}"], "path": ["ServiceLocations", ":id"], "variable": [{ "key": "id", "value": "" }] } } }
+      ]
+    },
+    {
+      "name": "Work Orders",
+      "item": [
+        { "name": "Create a work order", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{baseUrl}}/WorkOrders", "host": ["{{baseUrl}}"], "path": ["WorkOrders"] } } },
+        { "name": "Update a work order", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{baseUrl}}/WorkOrders", "host": ["{{baseUrl}}"], "path": ["WorkOrders"] } } },
+        { "name": "Search work orders", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/WorkOrders/search", "host": ["{{baseUrl}}"], "path": ["WorkOrders", "search"] } } },
+        { "name": "Get a work order by ID", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/WorkOrders/:id", "host": ["{{baseUrl}}"], "path": ["WorkOrders", ":id"], "variable": [{ "key": "id", "value": "" }] } } },
+        { "name": "List work order types", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/WorkOrderTypes", "host": ["{{baseUrl}}"], "path": ["WorkOrderTypes"] } } }
+      ]
+    },
+    {
+      "name": "Routes",
+      "item": [
+        { "name": "Get a technician route for a date", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Routes/GetTechRoute?TechId=&ServiceDate=", "host": ["{{baseUrl}}"], "path": ["Routes", "GetTechRoute"], "query": [{ "key": "TechId", "value": "" }, { "key": "ServiceDate", "value": "" }] } } },
+        { "name": "Get all routes for a day", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Routes/GetAllRoutesForDay?ServiceDate=", "host": ["{{baseUrl}}"], "path": ["Routes", "GetAllRoutesForDay"], "query": [{ "key": "ServiceDate", "value": "" }] } } }
+      ]
+    },
+    {
+      "name": "Invoices",
+      "item": [
+        { "name": "List invoices", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Invoices", "host": ["{{baseUrl}}"], "path": ["Invoices"] } } },
+        { "name": "Search invoices", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Invoices/search", "host": ["{{baseUrl}}"], "path": ["Invoices", "search"] } } },
+        { "name": "Get an invoice by ID", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Invoices/:id", "host": ["{{baseUrl}}"], "path": ["Invoices", ":id"], "variable": [{ "key": "id", "value": "" }] } } },
+        { "name": "Get billable service activity", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Billing", "host": ["{{baseUrl}}"], "path": ["Billing"] } } }
+      ]
+    },
+    {
+      "name": "Quotes",
+      "item": [
+        { "name": "List quotes", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Quotes?customerId=&includeDeleted=false", "host": ["{{baseUrl}}"], "path": ["Quotes"], "query": [{ "key": "customerId", "value": "" }, { "key": "includeDeleted", "value": "false" }] } } },
+        { "name": "Get a quote by ID", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Quotes/:id", "host": ["{{baseUrl}}"], "path": ["Quotes", ":id"], "variable": [{ "key": "id", "value": "" }] } } }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        { "name": "List products", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Products", "host": ["{{baseUrl}}"], "path": ["Products"] } } },
+        { "name": "Create a product", "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{baseUrl}}/Products", "host": ["{{baseUrl}}"], "path": ["Products"] } } },
+        { "name": "Update a product", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{baseUrl}}/Products", "host": ["{{baseUrl}}"], "path": ["Products"] } } },
+        { "name": "Search products", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Products/search", "host": ["{{baseUrl}}"], "path": ["Products", "search"] } } },
+        { "name": "Bulk update product prices", "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" }, "url": { "raw": "{{baseUrl}}/Products/prices", "host": ["{{baseUrl}}"], "path": ["Products", "prices"] } } },
+        { "name": "Get a product by ID", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Products/:id", "host": ["{{baseUrl}}"], "path": ["Products", ":id"], "variable": [{ "key": "id", "value": "" }] } } },
+        { "name": "Delete a product", "request": { "method": "DELETE", "header": [], "url": { "raw": "{{baseUrl}}/Products/:id", "host": ["{{baseUrl}}"], "path": ["Products", ":id"], "variable": [{ "key": "id", "value": "" }] } } },
+        { "name": "List product categories", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/ProductCategories", "host": ["{{baseUrl}}"], "path": ["ProductCategories"] } } },
+        { "name": "Get a product category by ID", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/ProductCategories/:id", "host": ["{{baseUrl}}"], "path": ["ProductCategories", ":id"], "variable": [{ "key": "id", "value": "" }] } } }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        { "name": "List users", "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/Users", "host": ["{{baseUrl}}"], "path": ["Users"] } } }
+      ]
+    }
+  ]
+}

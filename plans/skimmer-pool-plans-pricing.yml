@@ -1,0 +1,122 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Skimmer
+providerId: skimmer-pool
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Pool Service
+- Field Service Management
+- Plans
+- Pricing
+description: >-
+  Skimmer is priced per serviced location per month, billed regardless of how
+  many visits or bodies of water a location has. Published self-service tiers are
+  "Getting Started" ($1/location/month, $49/month minimum which includes 49
+  locations) and "Scaling Up" ($2/location/month, $98/month minimum, first month
+  free). Public API access is NOT part of these self-service tiers: it is
+  included only on the top Enterprise tier - marketed as "Skimmer for Enterprise"
+  / "Owning the Market" - which carries custom pricing and is aimed at operations
+  servicing 1,000+ pools per month. Enterprise (API) access is sales-led: pricing
+  and eligibility are negotiated with Skimmer's sales team, not published.
+notes: >-
+  Per-location prices above are from Skimmer's public pricing page and can
+  change. API access, custom integrations, and the "Owning the Market" tier are
+  quoted directly by Skimmer sales (sales@getskimmer.com, (855) 452-1737); no
+  public per-unit API price exists.
+sources:
+- https://www.getskimmer.com/pricing
+- https://www.getskimmer.com/enterprise
+- https://www.getskimmer.com/blog/skimmer-announces-public-api-to-support-custom-enterprise-workflows
+- https://devportal.getskimmer.com/introduction
+plans:
+- id: skimmer-getting-started
+  name: Getting Started
+  type: paid
+  description: >-
+    Entry self-service tier for smaller pool-service companies. Priced per
+    serviced location. Does not include Public API access.
+  entries:
+  - label: Serviced Locations
+    name: serviced_locations
+    type: usage
+    metric: locations
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '1.00'
+    userMultiplied: false
+  - label: Monthly Minimum
+    name: monthly_minimum
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '49.00'
+    userMultiplied: false
+  elements:
+  - name: Core Pool-Service Management
+  - name: Routes and Service Stops
+  - name: Billing and Invoicing
+- id: skimmer-scaling-up
+  name: Scaling Up
+  type: paid
+  description: >-
+    Most popular self-service tier, priced per serviced location, with a higher
+    per-location rate and expanded features (e.g. service texts). First month
+    free. Does not include Public API access.
+  entries:
+  - label: Serviced Locations
+    name: serviced_locations
+    type: usage
+    metric: locations
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '2.00'
+    userMultiplied: false
+  - label: Monthly Minimum
+    name: monthly_minimum
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '98.00'
+    userMultiplied: false
+  elements:
+  - name: Everything in Getting Started
+  - name: Service Texts
+  - name: Advanced Features
+- id: skimmer-enterprise
+  name: Skimmer for Enterprise (Owning the Market)
+  type: enterprise
+  description: >-
+    Top tier for large operations (1,000+ pools/month). The ONLY tier that
+    includes Public API access and custom integrations. Sales-led, custom
+    pricing; access to the API is provisioned by Skimmer, not self-service.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Public API Access
+  - name: Custom Integrations
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

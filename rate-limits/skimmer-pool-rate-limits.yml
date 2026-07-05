@@ -1,0 +1,58 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Skimmer
+providerId: skimmer-pool
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Pool Service
+- Field Service Management
+- Rate Limiting
+- Quotas
+description: >-
+  Skimmer's Public API is rate limited to 500 requests per minute, evaluated per
+  API key on a rolling 1-minute window. Each response carries standard
+  RateLimit-* headers so clients can track their remaining budget, and requests
+  over the limit are rejected with 429 Too Many Requests plus a Retry-After
+  header. The developer portal documents a single rate-limit level (not tiered).
+notes: >-
+  Values are from Skimmer's developer portal rate-limiting page. Because API
+  access is sales-led and Enterprise-only, contractual limits for a specific
+  account may be negotiated separately; verify at onboarding.
+sources:
+- https://devportal.getskimmer.com/rate-limiting
+- https://devportal.getskimmer.com/introduction
+responseCodes:
+  throttled: 429
+responseHeaders:
+- name: RateLimit-Limit
+  description: Maximum requests allowed in the current window.
+- name: RateLimit-Remaining
+  description: Requests still available before the limit is hit.
+- name: RateLimit-Reset
+  description: Seconds until the current window resets.
+- name: Retry-After
+  description: Seconds to wait before retrying, returned on 429 responses.
+limits:
+- name: Public API Requests
+  scope: api-key
+  metric: requests
+  limit: 500
+  timeFrame: minute
+  notes: 500 requests per minute per API key, rolling 1-minute window.
+policies:
+- name: Backoff Strategy
+  description: >-
+    On a 429, honor the Retry-After header and implement exponential backoff
+    with jitter; use RateLimit-Remaining / RateLimit-Reset to pace requests
+    proactively.
+- name: Pagination
+  description: >-
+    Use the Sieve-style search endpoints (page, pageSize, filters, sorts) to
+    retrieve large result sets in bounded pages rather than exhausting the
+    per-minute budget on wide scans.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
