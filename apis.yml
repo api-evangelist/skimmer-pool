@@ -184,6 +184,10 @@ apis:
     technicians - with their identifiers, names, contact details, role, and active
     status, so integrations can map technicians to routes and work orders.
 common:
+- type: DomainSecurity
+  url: security/skimmer-pool-domain-security.yml
+- type: Authentication
+  url: authentication/skimmer-pool-authentication.yml
 - type: Website
   url: https://www.getskimmer.com
 - type: LinkedIn

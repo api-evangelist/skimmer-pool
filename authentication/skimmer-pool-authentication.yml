@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/skimmer-pool-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: skimmerApiKey
+  type: apiKey
+  in: header
+  parameter: skimmer-api-key
+  description: Per-account Skimmer Public API key, issued via sales-led onboarding.
+  sources:
+  - openapi/skimmer-pool-openapi.yml
