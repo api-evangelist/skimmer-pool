@@ -184,6 +184,8 @@ apis:
     technicians - with their identifiers, names, contact details, role, and active
     status, so integrations can map technicians to routes and work orders.
 common:
+- type: AgenticAccess
+  url: agentic-access/skimmer-pool-agentic-access.yml
 - type: DomainSecurity
   url: security/skimmer-pool-domain-security.yml
 - type: Authentication
