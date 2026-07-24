@@ -1,0 +1,184 @@
+openapi: 3.0.3
+info:
+  title: Skimmer Public Bodies of Water Products API
+  description: 'The Skimmer Public API is the enterprise integration surface for Skimmer, pool-service business management software. It exposes the pool-service company''s operational data - customers, bodies of water, service locations, work orders and work order types, technician routes, quotes, invoices, billing, products and product categories, and users - over REST at https://publicapi.getskimmer.com.
+
+
+    Access is sales-led: the API is available only on Skimmer''s top ("Owning the Market" / Enterprise) tier and is provisioned by Skimmer''s team, not through self-service signup. Every request is authenticated with a per-account API key sent in the `skimmer-api-key` header. The API is rate limited to 500 requests per minute per key; exceeding it returns 429 with a Retry-After header.
+
+
+    NOTE: Path names, HTTP methods, the base URL, the auth header, and the Sieve-style search parameters below are taken from Skimmer''s public developer portal (devportal.getskimmer.com). Request and response BODY schemas are MODELED by API Evangelist from resource descriptions - Skimmer does not publish a machine-readable OpenAPI document publicly, and full field-level schemas are behind the sales-led onboarding. Treat property lists as representative, not authoritative.'
+  version: '1.0'
+  contact:
+    name: Skimmer
+    url: https://www.getskimmer.com
+servers:
+- url: https://publicapi.getskimmer.com
+  description: Skimmer Public API (production)
+security:
+- skimmerApiKey: []
+tags:
+- name: Products
+  description: Product catalog, categories, and prices.
+paths:
+  /Products:
+    get:
+      tags:
+      - Products
+      summary: List products
+      responses:
+        '200':
+          description: An array of products.
+    put:
+      tags:
+      - Products
+      summary: Update a product
+      responses:
+        '200':
+          description: The updated product.
+    post:
+      tags:
+      - Products
+      summary: Create a product
+      responses:
+        '201':
+          description: The created product.
+  /Products/search:
+    get:
+      tags:
+      - Products
+      summary: Search products
+      parameters:
+      - $ref: '#/components/parameters/Sorts'
+      - $ref: '#/components/parameters/Filters'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A filtered, sorted, paginated page of products.
+  /Products/prices:
+    put:
+      tags:
+      - Products
+      summary: Bulk update product prices
+      responses:
+        '200':
+          description: Prices updated.
+  /Products/{id}:
+    get:
+      tags:
+      - Products
+      summary: Get one product by ID
+      parameters:
+      - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: A single product.
+    delete:
+      tags:
+      - Products
+      summary: Delete a product
+      parameters:
+      - $ref: '#/components/parameters/IdPath'
+      responses:
+        '204':
+          description: Deleted.
+  /ProductCategories:
+    get:
+      tags:
+      - Products
+      summary: List product categories
+      responses:
+        '200':
+          description: An array of product categories.
+    put:
+      tags:
+      - Products
+      summary: Update a product category
+      responses:
+        '200':
+          description: The updated product category.
+    post:
+      tags:
+      - Products
+      summary: Create a product category
+      responses:
+        '201':
+          description: The created product category.
+  /ProductCategories/search:
+    get:
+      tags:
+      - Products
+      summary: Search product categories
+      parameters:
+      - $ref: '#/components/parameters/Sorts'
+      - $ref: '#/components/parameters/Filters'
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A filtered, sorted, paginated page of product categories.
+  /ProductCategories/{id}:
+    get:
+      tags:
+      - Products
+      summary: Get one product category by ID
+      parameters:
+      - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: A single product category.
+    delete:
+      tags:
+      - Products
+      summary: Delete a product category
+      parameters:
+      - $ref: '#/components/parameters/IdPath'
+      responses:
+        '204':
+          description: Deleted.
+components:
+  parameters:
+    PageSize:
+      name: pageSize
+      in: query
+      required: false
+      description: Number of results per page.
+      schema:
+        type: integer
+        minimum: 1
+    Page:
+      name: page
+      in: query
+      required: false
+      description: 1-based page number.
+      schema:
+        type: integer
+        minimum: 1
+    Filters:
+      name: filters
+      in: query
+      required: false
+      description: Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston).
+      schema:
+        type: string
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: Resource identifier.
+      schema:
+        type: string
+    Sorts:
+      name: sorts
+      in: query
+      required: false
+      description: Comma-delimited sort fields; prefix a field with '-' for descending (e.g. -CreatedAt). Sieve-style.
+      schema:
+        type: string
+  securitySchemes:
+    skimmerApiKey:
+      type: apiKey
+      in: header
+      name: skimmer-api-key
+      description: Per-account Skimmer Public API key, issued via sales-led onboarding.

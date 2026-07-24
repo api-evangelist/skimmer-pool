@@ -1,0 +1,69 @@
+openapi: 3.0.3
+info:
+  title: Skimmer Public Bodies of Water Quotes API
+  description: 'The Skimmer Public API is the enterprise integration surface for Skimmer, pool-service business management software. It exposes the pool-service company''s operational data - customers, bodies of water, service locations, work orders and work order types, technician routes, quotes, invoices, billing, products and product categories, and users - over REST at https://publicapi.getskimmer.com.
+
+
+    Access is sales-led: the API is available only on Skimmer''s top ("Owning the Market" / Enterprise) tier and is provisioned by Skimmer''s team, not through self-service signup. Every request is authenticated with a per-account API key sent in the `skimmer-api-key` header. The API is rate limited to 500 requests per minute per key; exceeding it returns 429 with a Retry-After header.
+
+
+    NOTE: Path names, HTTP methods, the base URL, the auth header, and the Sieve-style search parameters below are taken from Skimmer''s public developer portal (devportal.getskimmer.com). Request and response BODY schemas are MODELED by API Evangelist from resource descriptions - Skimmer does not publish a machine-readable OpenAPI document publicly, and full field-level schemas are behind the sales-led onboarding. Treat property lists as representative, not authoritative.'
+  version: '1.0'
+  contact:
+    name: Skimmer
+    url: https://www.getskimmer.com
+servers:
+- url: https://publicapi.getskimmer.com
+  description: Skimmer Public API (production)
+security:
+- skimmerApiKey: []
+tags:
+- name: Quotes
+  description: Sales quotes / estimates.
+paths:
+  /Quotes:
+    get:
+      tags:
+      - Quotes
+      summary: List quotes
+      parameters:
+      - name: customerId
+        in: query
+        required: false
+        description: Filter quotes by customer.
+        schema:
+          type: string
+      - name: includeDeleted
+        in: query
+        required: false
+        description: Include deleted quotes.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: An array of quotes.
+  /Quotes/{id}:
+    get:
+      tags:
+      - Quotes
+      summary: Get one quote by ID
+      parameters:
+      - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: A single quote with totals, customer, and locations.
+components:
+  parameters:
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: Resource identifier.
+      schema:
+        type: string
+  securitySchemes:
+    skimmerApiKey:
+      type: apiKey
+      in: header
+      name: skimmer-api-key
+      description: Per-account Skimmer Public API key, issued via sales-led onboarding.
