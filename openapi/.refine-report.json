@@ -1,0 +1,30 @@
+{
+  "provider": "skimmer-pool",
+  "sources": [
+    "skimmer-pool-bodies-of-water-api-openapi.yml",
+    "skimmer-pool-customers-api-openapi.yml",
+    "skimmer-pool-invoices-api-openapi.yml",
+    "skimmer-pool-products-api-openapi.yml",
+    "skimmer-pool-quotes-api-openapi.yml",
+    "skimmer-pool-routes-api-openapi.yml",
+    "skimmer-pool-service-locations-api-openapi.yml",
+    "skimmer-pool-users-api-openapi.yml",
+    "skimmer-pool-work-orders-api-openapi.yml"
+  ],
+  "outputs": [
+    "skimmer-pool-bodies-of-water-api-openapi.yml",
+    "skimmer-pool-customers-api-openapi.yml",
+    "skimmer-pool-invoices-api-openapi.yml",
+    "skimmer-pool-products-api-openapi.yml",
+    "skimmer-pool-quotes-api-openapi.yml",
+    "skimmer-pool-routes-api-openapi.yml",
+    "skimmer-pool-service-locations-api-openapi.yml",
+    "skimmer-pool-users-api-openapi.yml",
+    "skimmer-pool-work-orders-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
