@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Skimmer Public Bodies of Water Customers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "skimmer-api-key",
+      "value": "{{skimmer-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/Customers"
+          },
+          "docs": "List customers"
+        },
+        {
+          "info": {
+            "name": "Create a new customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicapi.getskimmer.com/Customers"
+          },
+          "docs": "Create a new customer"
+        },
+        {
+          "info": {
+            "name": "Update an existing customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicapi.getskimmer.com/Customers"
+          },
+          "docs": "Update an existing customer"
+        },
+        {
+          "info": {
+            "name": "Search customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/Customers/search",
+            "params": [
+              {
+                "name": "sorts",
+                "value": "",
+                "type": "query",
+                "description": "Comma-delimited sort fields; prefix a field with '-' for descending (e.g. -CreatedAt). Sieve-style."
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "1-based page number."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              }
+            ]
+          },
+          "docs": "Search customers"
+        },
+        {
+          "info": {
+            "name": "Get one customer by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/Customers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Get one customer by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://publicapi.getskimmer.com/Customers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Delete a customer"
+        },
+        {
+          "info": {
+            "name": "Activate a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicapi.getskimmer.com/Customers/Activate"
+          },
+          "docs": "Activate a customer"
+        },
+        {
+          "info": {
+            "name": "Deactivate a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicapi.getskimmer.com/Customers/Deactivate"
+          },
+          "docs": "Deactivate a customer"
+        },
+        {
+          "info": {
+            "name": "List customer activity logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/CustomerActivityLogs"
+          },
+          "docs": "List customer activity logs"
+        },
+        {
+          "info": {
+            "name": "Create a customer activity log",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicapi.getskimmer.com/CustomerActivityLogs"
+          },
+          "docs": "Create a customer activity log"
+        },
+        {
+          "info": {
+            "name": "Update a customer activity log",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicapi.getskimmer.com/CustomerActivityLogs"
+          },
+          "docs": "Update a customer activity log"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

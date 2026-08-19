@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Skimmer Public Bodies of Water Quotes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "skimmer-api-key",
+      "value": "{{skimmer-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Quotes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List quotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/Quotes",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "Filter quotes by customer."
+              },
+              {
+                "name": "includeDeleted",
+                "value": "",
+                "type": "query",
+                "description": "Include deleted quotes."
+              }
+            ]
+          },
+          "docs": "List quotes"
+        },
+        {
+          "info": {
+            "name": "Get one quote by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/Quotes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Get one quote by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

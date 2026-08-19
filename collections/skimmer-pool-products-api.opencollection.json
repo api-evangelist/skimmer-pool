@@ -1,0 +1,253 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Skimmer Public Bodies of Water Products API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "skimmer-api-key",
+      "value": "{{skimmer-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/Products"
+          },
+          "docs": "List products"
+        },
+        {
+          "info": {
+            "name": "Create a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicapi.getskimmer.com/Products"
+          },
+          "docs": "Create a product"
+        },
+        {
+          "info": {
+            "name": "Update a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicapi.getskimmer.com/Products"
+          },
+          "docs": "Update a product"
+        },
+        {
+          "info": {
+            "name": "Search products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/Products/search",
+            "params": [
+              {
+                "name": "sorts",
+                "value": "",
+                "type": "query",
+                "description": "Comma-delimited sort fields; prefix a field with '-' for descending (e.g. -CreatedAt). Sieve-style."
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "1-based page number."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              }
+            ]
+          },
+          "docs": "Search products"
+        },
+        {
+          "info": {
+            "name": "Bulk update product prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicapi.getskimmer.com/Products/prices"
+          },
+          "docs": "Bulk update product prices"
+        },
+        {
+          "info": {
+            "name": "Get one product by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/Products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Get one product by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a product",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://publicapi.getskimmer.com/Products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Delete a product"
+        },
+        {
+          "info": {
+            "name": "List product categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/ProductCategories"
+          },
+          "docs": "List product categories"
+        },
+        {
+          "info": {
+            "name": "Create a product category",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicapi.getskimmer.com/ProductCategories"
+          },
+          "docs": "Create a product category"
+        },
+        {
+          "info": {
+            "name": "Update a product category",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicapi.getskimmer.com/ProductCategories"
+          },
+          "docs": "Update a product category"
+        },
+        {
+          "info": {
+            "name": "Search product categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/ProductCategories/search",
+            "params": [
+              {
+                "name": "sorts",
+                "value": "",
+                "type": "query",
+                "description": "Comma-delimited sort fields; prefix a field with '-' for descending (e.g. -CreatedAt). Sieve-style."
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "1-based page number."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              }
+            ]
+          },
+          "docs": "Search product categories"
+        },
+        {
+          "info": {
+            "name": "Get one product category by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/ProductCategories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Get one product category by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a product category",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://publicapi.getskimmer.com/ProductCategories/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Delete a product category"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

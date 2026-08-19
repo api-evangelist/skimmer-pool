@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Skimmer Public Bodies of Water Invoices API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "skimmer-api-key",
+      "value": "{{skimmer-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invoices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List invoices by date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/Invoices"
+          },
+          "docs": "List invoices by date"
+        },
+        {
+          "info": {
+            "name": "Search invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/Invoices/search",
+            "params": [
+              {
+                "name": "sorts",
+                "value": "",
+                "type": "query",
+                "description": "Comma-delimited sort fields; prefix a field with '-' for descending (e.g. -CreatedAt). Sieve-style."
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "1-based page number."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              }
+            ]
+          },
+          "docs": "Search invoices"
+        },
+        {
+          "info": {
+            "name": "Get one invoice by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/Invoices/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Get one invoice by ID"
+        },
+        {
+          "info": {
+            "name": "Get billable service activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/Billing",
+            "params": [
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston)."
+              }
+            ]
+          },
+          "docs": "Retrieves billable service activity meeting the filter criteria."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

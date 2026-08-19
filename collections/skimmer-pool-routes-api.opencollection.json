@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Skimmer Public Bodies of Water Routes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "skimmer-api-key",
+      "value": "{{skimmer-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Routes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a technician's route for a date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/Routes/GetTechRoute",
+            "params": [
+              {
+                "name": "TechId",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the technician (user)."
+              },
+              {
+                "name": "ServiceDate",
+                "value": "",
+                "type": "query",
+                "description": "Service date (date)."
+              }
+            ]
+          },
+          "docs": "Get a technician's route for a date"
+        },
+        {
+          "info": {
+            "name": "Get all technician routes for a date",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/Routes/GetAllRoutesForDay",
+            "params": [
+              {
+                "name": "ServiceDate",
+                "value": "",
+                "type": "query",
+                "description": "Service date (date)."
+              }
+            ]
+          },
+          "docs": "Get all technician routes for a date"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

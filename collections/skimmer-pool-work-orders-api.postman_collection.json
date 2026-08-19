@@ -1,0 +1,436 @@
+{
+  "item": [
+    {
+      "id": "8a377952-cd49-4645-a9c0-7b8bb74e99a7",
+      "name": "Work Orders",
+      "description": {
+        "content": "Repair and service jobs, and work order types.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b3066fdd-98b9-4248-aa25-26ad7221c5f8",
+          "name": "Update a work order",
+          "request": {
+            "name": "Update a work order",
+            "description": {},
+            "url": {
+              "path": [
+                "WorkOrders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5726f0c-f2d5-4b77-b9b7-fbbea234422a",
+              "name": "The updated work order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "WorkOrders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "skimmer-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7514e696-365a-48d5-8d1d-18e75a23e38c",
+          "name": "Create a work order",
+          "request": {
+            "name": "Create a work order",
+            "description": {},
+            "url": {
+              "path": [
+                "WorkOrders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fcff6ea5-96e7-4b46-b5d4-646dfbc0b91e",
+              "name": "The created work order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "WorkOrders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "skimmer-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10025beb-9d14-41b1-8794-e7bca590f009",
+          "name": "Search work orders",
+          "request": {
+            "name": "Search work orders",
+            "description": {},
+            "url": {
+              "path": [
+                "WorkOrders",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sorts",
+                  "value": "<string>",
+                  "description": "Comma-delimited sort fields; prefix a field with '-' for descending (e.g. -CreatedAt). Sieve-style."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters",
+                  "value": "<string>",
+                  "description": "Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "1-based page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba03a652-bd9e-43b2-a501-e4d24c68c9c5",
+              "name": "A filtered, sorted, paginated page of work orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "WorkOrders",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sorts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "skimmer-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03c38a7c-6d27-45b0-aaea-46e340c55394",
+          "name": "Get one work order by ID",
+          "request": {
+            "name": "Get one work order by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "WorkOrders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Resource identifier."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "837ec438-10ac-4228-8854-551e7a5ac432",
+              "name": "A single work order.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "WorkOrders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Resource identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "skimmer-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a040d646-8826-4c9a-b6b9-345f0ad2d0f1",
+          "name": "List work order types",
+          "request": {
+            "name": "List work order types",
+            "description": {},
+            "url": {
+              "path": [
+                "WorkOrderTypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f629df05-9ab2-4dae-ae08-2321cb5b032c",
+              "name": "An array of work order types.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "WorkOrderTypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "skimmer-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://publicapi.getskimmer.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "skimmer-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f8fdebbd-d60e-40ed-a302-d426a3fdd9ba",
+    "name": "Skimmer Public Bodies of Water Work Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Skimmer Public API is the enterprise integration surface for Skimmer, pool-service business management software. It exposes the pool-service company's operational data - customers, bodies of water, service locations, work orders and work order types, technician routes, quotes, invoices, billing, products and product categories, and users - over REST at https://publicapi.getskimmer.com.\n\nAccess is sales-led: the API is available only on Skimmer's top (\"Owning the Market\" / Enterprise) tier and is provisioned by Skimmer's team, not through self-service signup. Every request is authenticated with a per-account API key sent in the `skimmer-api-key` header. The API is rate limited to 500 requests per minute per key; exceeding it returns 429 with a Retry-After header.\n\nNOTE: Path names, HTTP methods, the base URL, the auth header, and the Sieve-style search parameters below are taken from Skimmer's public developer portal (devportal.getskimmer.com). Request and response BODY schemas are MODELED by API Evangelist from resource descriptions - Skimmer does not publish a machine-readable OpenAPI document publicly, and full field-level schemas are behind the sales-led onboarding. Treat property lists as representative, not authoritative.\n\nContact Support:\n Name: Skimmer",
+      "type": "text/plain"
+    }
+  }
+}

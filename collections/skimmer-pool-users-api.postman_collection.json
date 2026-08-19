@@ -1,0 +1,117 @@
+{
+  "item": [
+    {
+      "id": "0320bfad-f9d1-4b7f-ba1a-0ab02b164c41",
+      "name": "Users",
+      "description": {
+        "content": "Account users - owners, admins, and technicians.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1218b09b-e571-4a1f-8cbf-b04c1bba53a0",
+          "name": "List users",
+          "request": {
+            "name": "List users",
+            "description": {
+              "content": "Retrieves all users - owners, admins, and technicians.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "658acc07-a4bd-40cd-8fe0-04406bbcae1b",
+              "name": "An array of users.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "skimmer-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://publicapi.getskimmer.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "skimmer-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "560bc339-0c51-4945-aa0d-98cecc42f314",
+    "name": "Skimmer Public Bodies of Water Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Skimmer Public API is the enterprise integration surface for Skimmer, pool-service business management software. It exposes the pool-service company's operational data - customers, bodies of water, service locations, work orders and work order types, technician routes, quotes, invoices, billing, products and product categories, and users - over REST at https://publicapi.getskimmer.com.\n\nAccess is sales-led: the API is available only on Skimmer's top (\"Owning the Market\" / Enterprise) tier and is provisioned by Skimmer's team, not through self-service signup. Every request is authenticated with a per-account API key sent in the `skimmer-api-key` header. The API is rate limited to 500 requests per minute per key; exceeding it returns 429 with a Retry-After header.\n\nNOTE: Path names, HTTP methods, the base URL, the auth header, and the Sieve-style search parameters below are taken from Skimmer's public developer portal (devportal.getskimmer.com). Request and response BODY schemas are MODELED by API Evangelist from resource descriptions - Skimmer does not publish a machine-readable OpenAPI document publicly, and full field-level schemas are behind the sales-led onboarding. Treat property lists as representative, not authoritative.\n\nContact Support:\n Name: Skimmer",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Skimmer Public Bodies of Water API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "skimmer-api-key",
+      "value": "{{skimmer-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bodies of Water",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List bodies of water",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/BodiesOfWater"
+          },
+          "docs": "List bodies of water"
+        },
+        {
+          "info": {
+            "name": "Create a body of water",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicapi.getskimmer.com/BodiesOfWater"
+          },
+          "docs": "Create a body of water"
+        },
+        {
+          "info": {
+            "name": "Update a body of water",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicapi.getskimmer.com/BodiesOfWater"
+          },
+          "docs": "Update a body of water"
+        },
+        {
+          "info": {
+            "name": "Search bodies of water",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/BodiesOfWater/search",
+            "params": [
+              {
+                "name": "sorts",
+                "value": "",
+                "type": "query",
+                "description": "Comma-delimited sort fields; prefix a field with '-' for descending (e.g. -CreatedAt). Sieve-style."
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "1-based page number."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              }
+            ]
+          },
+          "docs": "Search bodies of water"
+        },
+        {
+          "info": {
+            "name": "Get one body of water by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/BodiesOfWater/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Get one body of water by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a body of water",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://publicapi.getskimmer.com/BodiesOfWater/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Delete a body of water"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

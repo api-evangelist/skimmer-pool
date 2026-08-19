@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Skimmer Public Bodies of Water Service Locations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "skimmer-api-key",
+      "value": "{{skimmer-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Service Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List service locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/ServiceLocations"
+          },
+          "docs": "List service locations"
+        },
+        {
+          "info": {
+            "name": "Create a service location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicapi.getskimmer.com/ServiceLocations"
+          },
+          "docs": "Create a service location"
+        },
+        {
+          "info": {
+            "name": "Update a service location",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicapi.getskimmer.com/ServiceLocations"
+          },
+          "docs": "Update a service location"
+        },
+        {
+          "info": {
+            "name": "Search service locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/ServiceLocations/search",
+            "params": [
+              {
+                "name": "sorts",
+                "value": "",
+                "type": "query",
+                "description": "Comma-delimited sort fields; prefix a field with '-' for descending (e.g. -CreatedAt). Sieve-style."
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "1-based page number."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              }
+            ]
+          },
+          "docs": "Search service locations"
+        },
+        {
+          "info": {
+            "name": "Get one service location by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.getskimmer.com/ServiceLocations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Get one service location by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a service location",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://publicapi.getskimmer.com/ServiceLocations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier."
+              }
+            ]
+          },
+          "docs": "Delete a service location"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

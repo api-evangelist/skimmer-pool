@@ -1,0 +1,519 @@
+{
+  "item": [
+    {
+      "id": "f95bbb91-07b3-4ab9-b428-52755cd0bbc2",
+      "name": "Service Locations",
+      "description": {
+        "content": "Physical service sites; the unit Skimmer bills on.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "26deaae3-08d1-4688-875a-cb749a8c771e",
+          "name": "List service locations",
+          "request": {
+            "name": "List service locations",
+            "description": {},
+            "url": {
+              "path": [
+                "ServiceLocations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae3c1c41-7e0c-44be-8f08-897ee956b291",
+              "name": "An array of service locations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ServiceLocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "skimmer-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "115c7388-f5a0-48f5-a388-112a9b9d5812",
+          "name": "Update a service location",
+          "request": {
+            "name": "Update a service location",
+            "description": {},
+            "url": {
+              "path": [
+                "ServiceLocations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26667a47-396a-4d58-ab6a-a9e25cf20c23",
+              "name": "The updated service location.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ServiceLocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "skimmer-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "088cdfe5-4059-42e7-9c3b-acb5d7382064",
+          "name": "Create a service location",
+          "request": {
+            "name": "Create a service location",
+            "description": {},
+            "url": {
+              "path": [
+                "ServiceLocations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f8150f8-ae71-42f5-819a-a1056f6493e1",
+              "name": "The created service location.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ServiceLocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "skimmer-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "472fdda2-527a-43d7-9f5b-48074c0ad909",
+          "name": "Search service locations",
+          "request": {
+            "name": "Search service locations",
+            "description": {},
+            "url": {
+              "path": [
+                "ServiceLocations",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sorts",
+                  "value": "<string>",
+                  "description": "Comma-delimited sort fields; prefix a field with '-' for descending (e.g. -CreatedAt). Sieve-style."
+                },
+                {
+                  "disabled": false,
+                  "key": "filters",
+                  "value": "<string>",
+                  "description": "Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "1-based page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "469c3c2e-8f72-4810-9949-d2b95c70b6a3",
+              "name": "A filtered, sorted, paginated page of service locations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ServiceLocations",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sorts",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "skimmer-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3486554-3045-4880-9775-4ce1cd8e6209",
+          "name": "Get one service location by ID",
+          "request": {
+            "name": "Get one service location by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "ServiceLocations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Resource identifier."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "322d8b15-4426-4e9e-9d83-5355914648e9",
+              "name": "A single service location.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ServiceLocations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Resource identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "skimmer-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bdd02a81-8b1e-4a8f-ad1c-ffd52184e95d",
+          "name": "Delete a service location",
+          "request": {
+            "name": "Delete a service location",
+            "description": {},
+            "url": {
+              "path": [
+                "ServiceLocations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Resource identifier."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f388e33a-c97b-4ca0-b0b3-f6a2c044900f",
+              "name": "Deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ServiceLocations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Resource identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "skimmer-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://publicapi.getskimmer.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "skimmer-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5dbeb3ac-cfe7-4aa0-9c81-e4946dcbe611",
+    "name": "Skimmer Public Bodies of Water Service Locations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Skimmer Public API is the enterprise integration surface for Skimmer, pool-service business management software. It exposes the pool-service company's operational data - customers, bodies of water, service locations, work orders and work order types, technician routes, quotes, invoices, billing, products and product categories, and users - over REST at https://publicapi.getskimmer.com.\n\nAccess is sales-led: the API is available only on Skimmer's top (\"Owning the Market\" / Enterprise) tier and is provisioned by Skimmer's team, not through self-service signup. Every request is authenticated with a per-account API key sent in the `skimmer-api-key` header. The API is rate limited to 500 requests per minute per key; exceeding it returns 429 with a Retry-After header.\n\nNOTE: Path names, HTTP methods, the base URL, the auth header, and the Sieve-style search parameters below are taken from Skimmer's public developer portal (devportal.getskimmer.com). Request and response BODY schemas are MODELED by API Evangelist from resource descriptions - Skimmer does not publish a machine-readable OpenAPI document publicly, and full field-level schemas are behind the sales-led onboarding. Treat property lists as representative, not authoritative.\n\nContact Support:\n Name: Skimmer",
+      "type": "text/plain"
+    }
+  }
+}
