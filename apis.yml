@@ -140,6 +140,8 @@ apis:
   humanURL: https://devportal.getskimmer.com/api/customers
   baseURL: https://publicapi.getskimmer.com
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -268,6 +270,8 @@ apis:
   humanURL: https://devportal.getskimmer.com/api/customers
   baseURL: https://publicapi.getskimmer.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
