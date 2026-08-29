@@ -11,6 +11,18 @@ description: Skimmer is pool-service business management software (customers, bo
   / Enterprise) tier and provisioned through Skimmer's sales team rather than
   self-service signup. Authentication is via a per-account skimmer-api-key request
   header, and the API is rate limited to 500 requests per minute per key.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
