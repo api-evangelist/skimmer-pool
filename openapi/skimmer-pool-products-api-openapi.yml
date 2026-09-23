@@ -1,13 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Skimmer Public Bodies of Water Products API
-  description: 'The Skimmer Public API is the enterprise integration surface for Skimmer, pool-service business management software. It exposes the pool-service company''s operational data - customers, bodies of water, service locations, work orders and work order types, technician routes, quotes, invoices, billing, products and product categories, and users - over REST at https://publicapi.getskimmer.com.
-
-
-    Access is sales-led: the API is available only on Skimmer''s top ("Owning the Market" / Enterprise) tier and is provisioned by Skimmer''s team, not through self-service signup. Every request is authenticated with a per-account API key sent in the `skimmer-api-key` header. The API is rate limited to 500 requests per minute per key; exceeding it returns 429 with a Retry-After header.
-
-
-    NOTE: Path names, HTTP methods, the base URL, the auth header, and the Sieve-style search parameters below are taken from Skimmer''s public developer portal (devportal.getskimmer.com). Request and response BODY schemas are MODELED by API Evangelist from resource descriptions - Skimmer does not publish a machine-readable OpenAPI document publicly, and full field-level schemas are behind the sales-led onboarding. Treat property lists as representative, not authoritative.'
+  title: Skimmer Public Products API
+  description: The Skimmer Public API is the enterprise integration surface for Skimmer, pool-service business management software.
   version: '1.0'
   contact:
     name: Skimmer
@@ -29,6 +23,8 @@ paths:
       responses:
         '200':
           description: An array of products.
+      operationId: getProducts
+      x-operation-id-source: derived
     put:
       tags:
       - Products
@@ -36,6 +32,8 @@ paths:
       responses:
         '200':
           description: The updated product.
+      operationId: putProducts
+      x-operation-id-source: derived
     post:
       tags:
       - Products
@@ -43,6 +41,8 @@ paths:
       responses:
         '201':
           description: The created product.
+      operationId: postProducts
+      x-operation-id-source: derived
   /Products/search:
     get:
       tags:
@@ -56,6 +56,8 @@ paths:
       responses:
         '200':
           description: A filtered, sorted, paginated page of products.
+      operationId: getProductsSearch
+      x-operation-id-source: derived
   /Products/prices:
     put:
       tags:
@@ -64,6 +66,8 @@ paths:
       responses:
         '200':
           description: Prices updated.
+      operationId: putProductsPrices
+      x-operation-id-source: derived
   /Products/{id}:
     get:
       tags:
@@ -74,6 +78,8 @@ paths:
       responses:
         '200':
           description: A single product.
+      operationId: getProductsById
+      x-operation-id-source: derived
     delete:
       tags:
       - Products
@@ -83,6 +89,8 @@ paths:
       responses:
         '204':
           description: Deleted.
+      operationId: deleteProductsById
+      x-operation-id-source: derived
   /ProductCategories:
     get:
       tags:
@@ -91,6 +99,8 @@ paths:
       responses:
         '200':
           description: An array of product categories.
+      operationId: getProductCategories
+      x-operation-id-source: derived
     put:
       tags:
       - Products
@@ -98,6 +108,8 @@ paths:
       responses:
         '200':
           description: The updated product category.
+      operationId: putProductCategories
+      x-operation-id-source: derived
     post:
       tags:
       - Products
@@ -105,6 +117,8 @@ paths:
       responses:
         '201':
           description: The created product category.
+      operationId: postProductCategories
+      x-operation-id-source: derived
   /ProductCategories/search:
     get:
       tags:
@@ -118,6 +132,8 @@ paths:
       responses:
         '200':
           description: A filtered, sorted, paginated page of product categories.
+      operationId: getProductCategoriesSearch
+      x-operation-id-source: derived
   /ProductCategories/{id}:
     get:
       tags:
@@ -128,6 +144,8 @@ paths:
       responses:
         '200':
           description: A single product category.
+      operationId: getProductCategoriesById
+      x-operation-id-source: derived
     delete:
       tags:
       - Products
@@ -137,6 +155,8 @@ paths:
       responses:
         '204':
           description: Deleted.
+      operationId: deleteProductCategoriesById
+      x-operation-id-source: derived
 components:
   parameters:
     PageSize:
@@ -147,6 +167,20 @@ components:
       schema:
         type: integer
         minimum: 1
+    Filters:
+      name: filters
+      in: query
+      required: false
+      description: Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston).
+      schema:
+        type: string
+    Sorts:
+      name: sorts
+      in: query
+      required: false
+      description: Comma-delimited sort fields; prefix a field with '-' for descending (e.g. -CreatedAt). Sieve-style.
+      schema:
+        type: string
     Page:
       name: page
       in: query
@@ -155,25 +189,11 @@ components:
       schema:
         type: integer
         minimum: 1
-    Filters:
-      name: filters
-      in: query
-      required: false
-      description: Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston).
-      schema:
-        type: string
     IdPath:
       name: id
       in: path
       required: true
       description: Resource identifier.
-      schema:
-        type: string
-    Sorts:
-      name: sorts
-      in: query
-      required: false
-      description: Comma-delimited sort fields; prefix a field with '-' for descending (e.g. -CreatedAt). Sieve-style.
       schema:
         type: string
   securitySchemes:
