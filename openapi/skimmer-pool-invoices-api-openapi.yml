@@ -75,6 +75,13 @@ components:
       schema:
         type: integer
         minimum: 1
+    Sorts:
+      name: sorts
+      in: query
+      required: false
+      description: Comma-delimited sort fields; prefix a field with '-' for descending (e.g. -CreatedAt). Sieve-style.
+      schema:
+        type: string
     Filters:
       name: filters
       in: query
@@ -82,11 +89,11 @@ components:
       description: Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston).
       schema:
         type: string
-    Sorts:
-      name: sorts
-      in: query
-      required: false
-      description: Comma-delimited sort fields; prefix a field with '-' for descending (e.g. -CreatedAt). Sieve-style.
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: Resource identifier.
       schema:
         type: string
     Page:
@@ -97,13 +104,6 @@ components:
       schema:
         type: integer
         minimum: 1
-    IdPath:
-      name: id
-      in: path
-      required: true
-      description: Resource identifier.
-      schema:
-        type: string
   securitySchemes:
     skimmerApiKey:
       type: apiKey
