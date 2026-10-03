@@ -131,11 +131,25 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    PageSize:
-      name: pageSize
+    IdPath:
+      name: id
+      in: path
+      required: true
+      description: Resource identifier.
+      schema:
+        type: string
+    Filters:
+      name: filters
       in: query
       required: false
-      description: Number of results per page.
+      description: Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston).
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      required: false
+      description: 1-based page number.
       schema:
         type: integer
         minimum: 1
@@ -146,25 +160,11 @@ components:
       description: Comma-delimited sort fields; prefix a field with '-' for descending (e.g. -CreatedAt). Sieve-style.
       schema:
         type: string
-    Filters:
-      name: filters
+    PageSize:
+      name: pageSize
       in: query
       required: false
-      description: Sieve-style filter expression using operators such as ==, !=, >, <, >=, <=, @= (contains), _= (starts with), _-= (ends with), and their case-insensitive (*) and negated (!) variants. Combine with commas (e.g. BillingState==TX,BillingCity==Houston).
-      schema:
-        type: string
-    IdPath:
-      name: id
-      in: path
-      required: true
-      description: Resource identifier.
-      schema:
-        type: string
-    Page:
-      name: page
-      in: query
-      required: false
-      description: 1-based page number.
+      description: Number of results per page.
       schema:
         type: integer
         minimum: 1
