@@ -343,6 +343,9 @@ apis:
   - type: APIReference
     url: https://devportal.getskimmer.com/api/users
 common:
+- type: CapabilityMap
+  url: capabilities/skimmer-pool-capability-edges.yml
+  name: Skimmer Business Capability Map
 - type: AgenticAccess
   url: agentic-access/skimmer-pool-agentic-access.yml
 - type: DomainSecurity
